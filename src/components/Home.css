@@ -1,0 +1,11 @@
+.h_title h1{
+    font-size: 55px;
+    text-align: start;
+}
+/* .container{
+    padding: 6rem 0 2rem 0;
+    background: url(../components/images/shape-bottom.png) center bottom no-repeat;
+} */
+.btn{
+    background-color: red;
+}
