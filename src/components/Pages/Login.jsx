@@ -1,15 +1,17 @@
 import React from 'react';
+// import user_icon from './assets/person.png'
+// import email_icon from './assets/mail.png'
+// import password_icon from './assets/password.png'
 
 const Login = () => {
     return (
-        <div>
-            <h2>Login</h2>
+        
+ <div>
+        Connection
+ </div>
+      );
+    };
+    
 
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis officiis et porro? Aliquid, at obcaecati incidunt quas quia vero commodi.
-            </p>
-        </div>
-    );
-};
 
 export default Login;
