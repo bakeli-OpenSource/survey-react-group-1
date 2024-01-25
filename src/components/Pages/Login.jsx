@@ -10,7 +10,7 @@ import './login.css'
 
 const Login = () => {
   return (
-    <div className="container my-3" style={{backgroundColor:'#009788'}}>
+    <div className="container my-3" style={{backgroundColor:'#fff'}}>
       <Container>
         <Row>
         <Col md={6}>
@@ -34,7 +34,7 @@ const Login = () => {
                     border:'none',
                     padding:'15px',
                     width:'70%',
-                    backgroundColor:'#009788',
+                   
                     
                     borderBottom:'2px solid white'
                 }} placeholder= "Enter email" />
@@ -49,7 +49,6 @@ const Login = () => {
                     border:'none',
                     padding:'15px',
                     width:'70%',
-                    backgroundColor:'#009788',
                     borderBottom:'1px solid white',
                  }} placeholder="Password" />
               </Form.Group>
