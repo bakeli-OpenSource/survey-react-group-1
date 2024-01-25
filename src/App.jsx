@@ -9,18 +9,21 @@ import { BrowserRouter, Routes, Route, Link, NavLink } from 'react-router-dom';
 import Home from './components/Home';
 import About from './components/Pages/About';
 import Login from './components/Pages/Login';
+import Register from './components/Pages/Register';
+
 
 const App = () => {
     return (
         
             <BrowserRouter>
-            <main>
                     <Routes>
                         <Route path="/" element={<Home />}/>
                         <Route path="about" element={<About />}/>
                         <Route path="login" element={<Login />}/>
+                        <Route path="register" element={<Register />}/>
+                        
                     </Routes>
-            </main>
+
             </BrowserRouter>
         
     );
