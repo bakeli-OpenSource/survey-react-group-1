@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 export default function Home()
  {
   return (
-    <div className="containerss">
+    <div className="container">
       <Navbar expand='lg' className="" style={{marginTop:"-120px"}}>
         <Container>
           <Navbar.Brand href="#home">
