@@ -7,24 +7,29 @@ import imgContainer from "../components/images/imgContner.png"
 import { Col, Container, Row } from "react-bootstrap"; 
 import './Home.css'
 import { Link } from "react-router-dom";
+import { CiLogin } from "react-icons/ci";
 
 export default function Home()
  {
   return (
     <div className="container">
-      <Navbar expand='lg' className="" style={{marginTop:"-120px"}}>
+      <Navbar expand='lg' className="" style={{marginTop:"-80px"}}>
         <Container>
           <Navbar.Brand href="#home">
             <img src={logo} alt="logo" style={{width:"70%", objectFit:'cover'}}/>
           </Navbar.Brand>
           <Navbar.Toggle />
           <Navbar.Collapse className="justify-content-end">
-            <Nav className="me-auto">
+            {/* <Nav className="me-auto">
               <Nav.Link href="/" className="fw-bold">Home</Nav.Link>
               <Nav.Link href="about" className="fw-bold">About</Nav.Link>
-            </Nav>
+            </Nav> */}
             <Navbar.Text>
-              Signed in as: <a href="login">JULO</a>
+              <a href="login" style={{
+                textDecoration:'none',
+                color:'#2F2E40',
+                
+              }}><h6> Se connecter<CiLogin /> </h6></a>
             </Navbar.Text>
           </Navbar.Collapse>
         </Container>
@@ -42,7 +47,7 @@ export default function Home()
                 </div>
                 <div className="d-flex align-items-start">
                   
-                  <Link to="login"><Button style={{background:'#FF9700'}} className="border-0 mt-3 px-4 py-3 rounded">S'INSCRIRE</Button></Link>
+                  <Link to="login"><Button style={{background:'#FF9700'}} className="border-0 mt-3 px-4 py-3 rounded">Créer votre sondage</Button></Link>
                 </div>
               </div>
             </Col>
