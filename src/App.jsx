@@ -15,6 +15,8 @@ import Dahsboard from './components/Pages/Dahsboard';
 import Sondage from './components/Pages/Sondage';
 import Resultats from './components/Pages/Resultats';
 import HomeDash from './components/Pages/HomeDash';
+import ViewSondage from './components/Pages/ViewSondage';
+import User from './components/Pages/User';
 import Chart from 'chart.js/auto';
 
 
@@ -34,6 +36,8 @@ const App = () => {
                         <Route path='/create-sondage' element={<Sondage />}></Route>
                         <Route path='/resultat-sondage' element={<Resultats />}></Route>
                         <Route path='/home-dash' element={<HomeDash />}></Route>
+                        <Route path='/voir-sondage' element={<ViewSondage />}></Route>
+                        <Route path='/user-profil' element={<User />}></Route>
             </Routes>
         </BrowserRouter>     
     );

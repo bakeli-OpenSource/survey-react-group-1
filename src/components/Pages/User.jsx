@@ -1,22 +1,23 @@
 /* eslint-disable no-unused-vars */
 import React from 'react'
-import Sidebar from './Sidebar'
 import Header from './Header'
+import Sidebar from './Sidebar'
 
-function Resultats() {
+function User() {
   return (
     <div className="d-flex">
     <div className="w-auto">
+
         <Sidebar />
     </div>
     <div className="col overflow-auto">
     <Header />
        <div>
-        <h1>Resultats</h1>
+        <h2>User Profil</h2>
        </div>
     </div>
 </div>
   )
 }
 
-export default Resultats
+export default User

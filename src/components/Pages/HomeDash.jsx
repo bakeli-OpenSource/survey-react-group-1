@@ -33,7 +33,7 @@ function HomeDash() {
                     <Card.Text className="text-center mt-4">
                         <div className="d-flex">
                         <BsFillBarChartFill />
-                        <h3 className="text-center">33</h3>
+                        <h3 className="">33</h3>
                         </div>
                     </Card.Text>
                   </Card.Body>

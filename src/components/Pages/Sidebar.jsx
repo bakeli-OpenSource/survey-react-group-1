@@ -43,10 +43,10 @@ function Sidebar() {
                 </li>
                 <li className= {active === 3 ? "active nav-item p-3 " : "nav-item p-3"}
                  onClick={e => SetActive(3)}>
-                    <a href="" className='p-3 text-decoration-none'> 
+                    <Link to="/voir-sondage" className='p-3 text-decoration-none'> 
                         <AiOutlineEye className='me-3 fs-2'/>
                         <span className='fs-4'><strong>Voir Sondage</strong></span>
-                    </a>
+                    </Link>
                 </li>
                 <li className= {active === 4 ? "active nav-item p-3 " : "nav-item p-3"}
                  onClick={e => SetActive(4)}>
@@ -60,10 +60,10 @@ function Sidebar() {
         <div>
         <hr className="text-dark mt-2" />
         <div className="nav-item p-3">
-            <a href="" className='p-3 text-dark text-decoration-none'>
+            <Link to="/user-profil" className='p-3 text-dark text-decoration-none'>
                 <FaRegUserCircle className='me-3 fs-2'/>
                 <span className='fs-4'><strong>User</strong></span>
-            </a>
+            </Link>
         </div>
         </div>
     </div>
