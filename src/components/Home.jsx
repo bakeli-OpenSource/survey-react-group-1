@@ -36,9 +36,9 @@ export default function Home()
       </Navbar>
 
       <Container>
-          <Row>
+          <Row style={{marginTop:'50px'}}>
             <Col md={6}>
-              <div className="head_left" style={{marginTop:'100px'}}>
+              <div className="head_left">
                 {/* <span className="h_subTitle">Plateforme de Sondage</span> */}
                 <div className="w-100 h_title border-0" >
                   <h1 className="" style={{color:'#2F2E40'}}>Donnez vie à vos</h1>
@@ -53,7 +53,7 @@ export default function Home()
             </Col>
             <Col md={6}>
               <div className="head_right">
-                  <img src={imgContainer} style={{width:'110%', height:'430px',objectFit:'cover'}} alt="" className="img-fluid d-md-flex d-sm-none" />
+                  <img src={imgContainer} style={{width:'100%',objectFit:'cover'}} alt="" className="img-fluid d-md-flex d-sm-none" />
               </div>
             </Col>
           </Row>

@@ -23,11 +23,11 @@
     box-sizing: border-box;
   }
 
-  form #header{
+  /* form #header{
     box-shadow: 0px 3px 5px 0;
-  }
+  } */
   
-  .form-control{
+  #survey{
     box-shadow: 0 3px 3px 0;
   }
 

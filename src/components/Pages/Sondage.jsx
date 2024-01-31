@@ -38,17 +38,17 @@ function Sondage() {
 
           <h1>Créer votre sondage</h1>
 
-          <form className="container-fluid my-4" autoComplete="off">
+          <form className="form-control my-4" id="survey" autoComplete="off">
             <div className="d-flex justify-content-between align-items-center flex-wrap" id="header">
               <input className="my-4 mx-4" type="text" name="titre_sondage" placeholder="Titre Sondage"/>
-              <textarea className="textarea mx-4 mb-4" rows={3} cols={60} name="description_sondage" placeholder="Description sondage">
+              <textarea className="textarea mx-4 mb-4" rows={3} cols={70} name="description_sondage" placeholder="Description sondage">
 
               </textarea>
             </div>
           </form>
 
 
-          <form className="form-control" autoComplete="off">
+          <form className="form-control" id="survey" autoComplete="off">
             <div className="form-field">
               <label htmlFor="question">Question(s)</label>
               <div className="header">
