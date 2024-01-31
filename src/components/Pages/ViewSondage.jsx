@@ -1,11 +1,9 @@
 /* eslint-disable no-unused-vars */
 import React from 'react'
+import Header from './Header'
 import Sidebar from './Sidebar'
-import Header from './Header';
-import HomeDash from './HomeDash';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-function Sondage() {
+function ViewSondage() {
   return (
     <div className="d-flex">
             <div className="w-auto">
@@ -15,12 +13,11 @@ function Sondage() {
             <div className="col overflow-auto">
             <Header />
                <div>
-                <h2>Creer Sondage</h2>
+                <h2>Voir Sondage</h2>
                </div>
             </div>
       </div>
-    
   )
 }
 
-export default Sondage
+export default ViewSondage
