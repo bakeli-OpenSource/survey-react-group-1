@@ -83,7 +83,7 @@ const data = [
                     </Card.Title>
                     <Card.Text className="text-center mt-4">
                         <div className="d-flex">
-                        <BsFillBarChartFill />
+                        {/* <BsFillBarChartFill /> */}
                         <h3 className="">33</h3>
                         </div>
                     </Card.Text>
@@ -145,8 +145,8 @@ const data = [
               <YAxis />
               <Tooltip />
               <Legend />
-              <Bar dataKey="pv" fill="#8884d8" activeBar={<Rectangle fill="pink" stroke="blue" />} />
-              <Bar dataKey="uv" fill="#82ca9d" activeBar={<Rectangle fill="gold" stroke="purple" />} />
+              <Bar dataKey="pv" fill="#FF9700" activeBar={<Rectangle fill="pink" stroke="blue" />} />
+              <Bar dataKey="uv" fill="#009788" activeBar={<Rectangle fill="gold" stroke="purple" />} />
             </BarChart>
           </ResponsiveContainer>
 
@@ -167,8 +167,8 @@ const data = [
               <YAxis />
               <Tooltip />
               <Legend />
-              <Line type="monotone" dataKey="pv" stroke="#8884d8" activeDot={{ r: 8 }} />
-              <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+              <Line type="monotone" dataKey="pv" stroke="#FF9700" activeDot={{ r: 8 }} />
+              <Line type="monotone" dataKey="uv" stroke="#009788" />
             </LineChart>
           </ResponsiveContainer>
     
