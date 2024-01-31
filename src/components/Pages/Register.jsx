@@ -1,8 +1,9 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Navbar from "react-bootstrap/Navbar";
-import Nav from "react-bootstrap/Nav";
+
 import { Link } from "react-router-dom";
 import { Col, Container, Row } from "react-bootstrap";
 import imgRegister from "../../components/images/register.png";
@@ -101,7 +102,6 @@ const Register = () => {
             </Col>
             <Col md={6}>
               <div className="head_right">
-                <div className="imgContainer d-flex justify-content-between align-items-end">
                   <img
                     src={imgRegister}
                     style={{
@@ -110,9 +110,8 @@ const Register = () => {
                       objectFit: "cover",
                     }}
                     alt=""
-                    className=""
+                    className="img-fluid d-md-flex d-sm-none"
                   />
-                </div>
               </div>
             </Col>
             

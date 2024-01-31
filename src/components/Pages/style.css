@@ -1,0 +1,20 @@
+.sidebar ul li :hover{
+    background-color: #009788;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.active {
+    background-color: #009788;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.sidebar ul li a{
+    color: #4A5460;
+}
+
+.sidebar{
+    /* background-color: #FF9700; */
+    background-color: #EDF2F9;
+}

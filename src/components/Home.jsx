@@ -1,6 +1,6 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import Navbar from "react-bootstrap/Navbar"
-import Nav from "react-bootstrap/Nav"
 import Button from "react-bootstrap/Button"
 import logo from "../components/images/logo.png" 
 import imgContainer from "../components/images/imgContner.png"  
@@ -53,9 +53,7 @@ export default function Home()
             </Col>
             <Col md={6}>
               <div className="head_right">
-                <div className="imgContainer d-flex justify-content-between align-items-end">
-                  <img src={imgContainer} style={{width:'110%', height:'430px',objectFit:'cover'}} alt="" className="" />
-                </div>
+                  <img src={imgContainer} style={{width:'110%', height:'430px',objectFit:'cover'}} alt="" className="img-fluid d-md-flex d-sm-none" />
               </div>
             </Col>
           </Row>
