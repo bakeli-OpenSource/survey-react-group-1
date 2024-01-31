@@ -1,5 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
-/* eslint-disable no-unused-vars */
 import React from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -9,8 +7,31 @@ import { Col, Container, Row } from "react-bootstrap";
 import imgLogin from "../../components/images/login.png";
 import logoSmall from "../../components/images/logo-small.png";
 import './login.css'
+import axios from "axios";
+import toast, { Toaster } from 'react-hot-toast';
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: ""
+  });
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+  // const [emailExists, setEmailExists] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
+  
+  
+  const handleSubmit = async(e) => {
+    e.preventDefault();
+  }
+
+
   return (
     <div className="container my-3" style={{backgroundColor:''}}>
      
@@ -67,7 +88,7 @@ const Login = () => {
           textAlign:'left',
           color:'#000'
          }}>
-         Vous n'avez pas encore de compte <Nav.Link className="fw-bold" href="register" style={{
+         Vous n\avez pas encore de compte <Nav.Link className="fw-bold" href="register" style={{
           textDecoration:'none',
           color:'#009788',
          }}> inscrivez vous</Nav.Link>
