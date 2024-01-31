@@ -1,4 +1,5 @@
 import React from "react";
+import axios from 'axios';
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Navbar from "react-bootstrap/Navbar";
@@ -11,6 +12,24 @@ import logoSmall from "../../components/images/logo-small.png";
 import "./login.css";
 
 const Register = () => {
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     const formData = {
+  //       name: e.target.elements.name.value,
+  //       email: e.target.elements.email.value,
+  //       password: e.target.elements.password.value
+  //     };
+  
+  //     const response = await axios.post('http://127.0.0.1:8000/api/inscription', formData);
+  //     console.log('Inscription réussie:', response.data);
+  //     // Gérer la réponse de l'API ici
+  //   } catch (error) {
+  //     console.error('Veuillez revoir les informations saisies :', error);
+  //     // Gérer les erreurs ici
+  //   }
+  // };
+  
   return (
     <div className="container my-3"
         style={{ backgroundColor: "", padding: "2px" }}>
@@ -30,13 +49,14 @@ const Register = () => {
           <Row className="container-2">
             <Col md={6}>
               
-              <Form className="" style={{ 
+              <Form className="" onSubmit={handleSubmit} style={{ 
                 marginTop: "75px",
                 marginLeft:'100px'
                 }}>
                 <Form.Group className="" controlId="formBasicEmail">
                   {/* <Form.Label>Email address</Form.Label> */}
                   <Form.Control
+                    name="name"
                     type="text"
                     className=""
                     style={{
@@ -49,6 +69,7 @@ const Register = () => {
                   />  <br />
                  
                   <Form.Control
+                    name="email"
                     type="email"
                     className=""
                     style={{
@@ -61,6 +82,7 @@ const Register = () => {
                 </Form.Group> <br />
 
                   <Form.Control
+                    name="password"
                     type="password"
                     style={{
                       border: "none",
@@ -84,19 +106,21 @@ const Register = () => {
                     }}> identifiez vous </a>
                   </p>
                 </Form.Text>
-                <Button
-                  variant=""
-                  className="text-white"
-                  style={{
-                    backgroundColor: "#009788",
-                    padding: "10px",
-                    width: "35%",
-                    marginRight: "90px",
-                  }}
-                  type="submit"
-                >
-                  INSCRIRE
-                </Button>
+                {/* <Link to="sondage"> */}
+                  <Button
+                    variant=""
+                    className="text-white"
+                    style={{
+                      backgroundColor: "#009788",
+                      padding: "10px",
+                      width: "35%",
+                      marginRight: "90px",
+                    }}
+                    type="submit"
+                    >
+                    S'INSCRIRE
+                  </Button>
+                {/* </Link> */}
               </Form>
             </Col>
             <Col md={6}>
