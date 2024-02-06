@@ -10,7 +10,7 @@ import './login.css'
 function Header() {
   return (
     <div>
-        <Navbar expand="" className="header-dash" style={{
+        <Navbar expand="lg" className="header-dash" style={{
             backgroundColor:'#fff',
             color:'#4A5460',
             padding:'20px'

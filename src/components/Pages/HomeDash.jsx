@@ -79,7 +79,7 @@ const data = [
                 >
                   <Card.Body>
                     <Card.Title className="text-center">
-                      Nombre Sondage
+                      Nombre Sondages 
                     </Card.Title>
                     <Card.Text className="text-center mt-4">
                         <div className="d-flex">
@@ -97,10 +97,10 @@ const data = [
                 >
                   <Card.Body>
                     <Card.Title className="text-center">
-                      Nombre Sondage
+                      Sondages 
                     </Card.Title>
                     <Card.Text className="text-center mt-4">
-                      <h3>33</h3>
+                      <h3>20</h3>
                     </Card.Text>
                   </Card.Body>
                 </Card>
@@ -112,10 +112,10 @@ const data = [
                 >
                   <Card.Body>
                     <Card.Title className="text-center">
-                      Nombre Sondage
+                       Sondages partagés
                     </Card.Title>
                     <Card.Text className="text-center mt-4">
-                      <h3>33</h3>
+                      <h3>13</h3>
                     </Card.Text>
                   </Card.Body>
                 </Card>
