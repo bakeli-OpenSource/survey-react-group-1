@@ -1,40 +1,55 @@
-/* eslint-disable no-unused-vars */
-import React from 'react'
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-// import { FaUserCircle } from "react-icons/fa";
-import './login.css'
+import { useState, useEffect } from "react"; // Ajoutez useEffect ici
+import axios from "axios";
+import { Nav, Navbar, NavDropdown } from "react-bootstrap";
+import { Link, Navigate } from "react-router-dom";
+import "./login.css";
 
 function Header() {
+  const [isLogout, setIsLogout] = useState(false); // Etat pour gérer la redirection
+  const [error, setError] = useState(null);
+
+  const logout = async () => {
+    try {
+      const response = await axios.delete("http://localhost:8000/api/logout");
+      console.log("Réponse de la requête DELETE:", response.data);
+      // Mettre à jour l'état pour déclencher la redirection
+      setIsLogout(true);
+    } catch (error) {
+      console.error("Erreur de la requête:", error.message);
+      // Gérer les erreurs ici
+    }
+  };
+
+  if (isLogout) {
+    return <Navigate to="/" />;
+  }
+
   return (
     <div>
-        <Navbar expand="" className="header-dash" style={{
-            backgroundColor:'#fff',
-            color:'#4A5460',
-            padding:'20px'
-        }}>
-      <Container>
+      <Navbar
+        expand=""
+        className="header-dash"
+        style={{
+          backgroundColor: "#fff",
+          color: "#4A5460",
+          padding: "20px",
+        }}
+      >
         <Navbar.Brand href="#home">Dashboard</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
-            {/* <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#link">Link</Nav.Link> */}
             <NavDropdown title="Reglage" id="basic-nav-dropdown">
-               
-              <NavDropdown.Item href="#action/3.1">Profil</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Deconnection
+                <NavDropdown.Item href="/user-profil">Profil</NavDropdown.Item>
+              <NavDropdown.Item href="" onClick={logout}>
+                Déconnexion
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
-      </Container>
-    </Navbar>
+      </Navbar>
     </div>
-  )
+  );
 }
 
-export default Header
+export default Header;

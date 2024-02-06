@@ -97,7 +97,8 @@ const Login = () => {
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 {/* <Form.Label>Email address</Form.Label> */}
                 <Form.Control type="email"
-                  id='email'
+                  // id='email'
+                  name='email'
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                  className="" 
@@ -115,7 +116,8 @@ const Login = () => {
               <Form.Group className="mb-3" controlId="formBasicPassword">
                 {/* <Form.Label>Password</Form.Label> */}
                 <Form.Control type="password" 
-                id='password'
+                // id='password'
+                name='password'
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 style={{

@@ -86,12 +86,12 @@ const Register = () => {
                 marginLeft:'100px'
                 }}
                 onSubmit={handleSubmit}>
-                <Form.Group className="" controlId="formBasicEmail">
+                <Form.Group className="" controlId="formBasicName">
                   {/* <Form.Label>Email address</Form.Label> */}
                   <Form.Control
                     type="text"
-                    className=""
-                    id='name'
+                    name="name"
+                    // id='name'
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     style={{
@@ -101,12 +101,15 @@ const Register = () => {
                       marginTop:'95px'
                     }}
                     placeholder="Enter Nom Complet"
-                  />  <br />
-                 
+                  /> 
+                  </Form.Group>
+                   <br />
+                 <Form.Group className="" controlId="formBasicEmail">
                   <Form.Control
                     type="email"
                     className=""
-                    id='email'
+                    // id='email'
+                    name='email'
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     style={{
@@ -117,11 +120,12 @@ const Register = () => {
                     placeholder="Enter email"
                   />
                 </Form.Group> <br />
-
+                
+                <Form.Group className="" controlId="formBasicPassword">
                   <Form.Control
-                    // name="password"
+                    name="password"
                     type="password"
-                    id='name'
+                    // id='name'
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     style={{
@@ -130,7 +134,7 @@ const Register = () => {
                       width: "70%",
                     }}
                     placeholder="Password"
-                  />
+                  /></Form.Group> <br />
                 <Form.Text className="text-muted">
                   <p
                     className="mt-3"
