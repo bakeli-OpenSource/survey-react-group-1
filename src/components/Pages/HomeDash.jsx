@@ -74,7 +74,7 @@ const data = [
               <div className="row">
                 <Card
                   border=""
-                  style={{ width: "18rem" }}
+                  style={{ width: "16rem" }}
                   className="me-5 card"
                 >
                   <Card.Body>
@@ -92,7 +92,7 @@ const data = [
 
                 <Card
                   border=""
-                  style={{ width: "18rem" }}
+                  style={{ width: "16rem" }}
                   className="me-5 card"
                 >
                   <Card.Body>
@@ -107,7 +107,7 @@ const data = [
 
                 <Card
                   border=""
-                  style={{ width: "18rem" }}
+                  style={{ width: "16rem" }}
                   className="me-5 card"
                 >
                   <Card.Body>

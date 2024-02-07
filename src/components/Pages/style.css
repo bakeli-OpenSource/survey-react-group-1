@@ -18,3 +18,105 @@
     /* background-color: #FF9700; */
     background-color: #EDF2F9;
 }
+
+* {
+    box-sizing: border-box;
+  }
+
+  /* form #header{
+    box-shadow: 0px 3px 5px 0;
+  } */
+  
+  #survey{
+    box-shadow: 0 3px 3px 0;
+  }
+
+
+  /* .App {
+    width: 70vh;
+    margin: 5rem auto;
+    display: flex;
+    justify-content: space-between;
+  } */
+  
+  .form-field {
+    flex: 2;
+  }
+  .output {
+    margin-left: 3rem;
+    flex: 1;
+  }
+  #content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #content h1 {
+    color: #009788;
+  }
+  .form-field label
+  {
+    margin: 10px 0;
+    font-size: 18px;
+    font-weight: 500;
+    color: #009788;
+  }
+  
+  input {
+    height: 35px;
+    width: 100%;
+    padding: 7px;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid rgb(220, 220, 220);
+  }
+  
+  input:focus {
+    border: 1px solid rgb(0, 208, 255);
+  }
+  
+  /* .services {
+    display: flex;
+    justify-content: space-between;
+  } */
+  .first-division {
+    display: flex;
+    flex-direction: column;
+    margin: 0 5px 0.5rem 0;
+    width: 100%;
+  }
+  button {
+    background: none;
+    outline: none;
+    cursor: pointer;
+    font-weight: 500;
+    border-radius: 5px;
+    padding: 5px 10px;
+  }
+  .add-btn{
+    align-self: flex-start;
+    display: flex;
+    align-items: center;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    background: #009788;
+    border: 1px solid rgb(0, 208, 255);
+    color: #FFF;
+  }
+  
+  .submit-btn{
+    float: inline-end;
+    /* margin-right: 150px; */
+    background: #FF9700;
+    color: #f8f6f4;
+    border: 1px solid #f5f0ed;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    padding: 5px 15px;
+  }
+  
+  .second-division button {
+    color: red;
+    border: 1px solid red;
+  }
+  
