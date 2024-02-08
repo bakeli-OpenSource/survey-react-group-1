@@ -63,9 +63,8 @@ const data = [
 
   return (
     <div className="d-flex">
-      <div className="w-auto">
-        <Sidebar />
-      </div>
+      <Sidebar />
+      
       <div className="col overflow-auto bg-light">
         <Header />
         <div>

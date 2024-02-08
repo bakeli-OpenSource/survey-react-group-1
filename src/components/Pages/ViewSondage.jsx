@@ -6,10 +6,10 @@ import Sidebar from './Sidebar'
 function ViewSondage() {
   return (
     <div className="d-flex">
-            <div className="w-auto">
+            
 
                 <Sidebar />
-            </div>
+            
             <div className="col overflow-auto">
             <Header />
                <div>

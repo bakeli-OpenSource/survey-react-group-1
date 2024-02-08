@@ -12,9 +12,9 @@ function Dahsboard() {
   return (
     <div>
         <div className="d-flex">
-            <div className="w-auto"> 
+            
             <Sidebar />
-            </div>
+            
             <div className="col overflow-auto">
                 
             </div>
