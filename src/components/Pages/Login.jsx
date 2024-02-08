@@ -3,7 +3,8 @@ import axios from "axios";
 import { useLocation } from 'react-router-dom';
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import Nav from "react-bootstrap/Nav"
+import Nav from "react-bootstrap/Nav";
+import Alert from 'react-bootstrap/Alert';
 import { Link,Navigate } from "react-router-dom";
 import { Col, Container, Row } from "react-bootstrap";
 import imgLogin from "../../components/images/login.png";
@@ -18,6 +19,7 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
+  const [show, setShow] = useState(true);
   // const [successSms, setSuccessSms] = useState(null);
   const [isLogged, setIsLogged] = useState(false); // Etat pour gérer la redirection
   // const navigate = useNavigate();
@@ -36,6 +38,11 @@ const Login = () => {
       // setSuccessSms('Connexion réussie !');
       // Effacez les éventuels messages d'erreur précédents
       setError(null);
+      setShow(true);
+      // Enregistrer des données dans sessionStorage
+      sessionStorage.setItem('token', response.data.token);
+      
+      
       // Effacez les champs du formulaire après une inscription réussie
       setEmail('');
       setPassword('');
@@ -48,6 +55,7 @@ const Login = () => {
         console.error('Erreur de la requête:', error.response.data);
         setError(error.response.data.message); // Enregistrez le message d'erreur dans l'état
         // Effacez les éventuels messages de succès précédents
+        setShow(false);
       } else if (error.request) {
         // Si la requête est faite mais aucune réponse n'est reçue
         console.error('Pas de réponse de la requête:', error.request);
@@ -77,9 +85,13 @@ const Login = () => {
         }}/>
           </div>
         </Link>
+        {/* Afficher l'alerte uniquement si une erreur est présente et que show est vrai */}
+        {successMessage && show && (
+          <Alert variant="success" onClose={() => setShow(false)} dismissible>
+            <p className="text-center"><strong>{successMessage}</strong></p>
+          </Alert>
+        )}
         {error && <p style={{ color: 'red' }} className="text-center"><strong>{error}</strong></p>} {/* Affichez l'erreur si elle existe */}
-        {successMessage && <p style={{ color: 'green'}} className="text-center"><strong>{successMessage}</strong></p>}
-        {/* {successSms && <p style={{ color: 'green'}} className="text-center"><strong>{successSms}</strong></p>} */}
         <Row className="container-2">
         <Col md={6}>
             <div className="head_right">

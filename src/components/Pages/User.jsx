@@ -15,17 +15,24 @@ function User() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
   const [isUpdated, setIsUpdated] = useState(false);
-  
+
+  // Récupérer des données depuis sessionStorage
+  let token = sessionStorage.getItem('token');
+
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/api/userData');
+        const response = await axios.get('http://localhost:8000/api/userData',{
+          headers:{
+            "Authorization": `Bearer ${token}`
+          },
+        });
         console.log('Réponse de la requête:', response.data)
-        const userData = response.data; // Assurez-vous que les données sont dans response.data.user
+        const userData = response.data;
 
         setName(userData.name);
         setEmail(userData.email);
-        // Ne mettez pas à jour le mot de passe ici pour des raisons de sécurité
+        
       } catch (error) {
         console.error('Erreur lors de la récupération des données utilisateur:', error.message);
         setError('Erreur lors de la récupération des données utilisateur');
@@ -42,11 +49,16 @@ function User() {
       const response = await axios.put('http://localhost:8000/api/update', {
         name: name,
         email: email,
-        password: password
-      });
+        password: password,
+        headers:{
+            "Authorization": `Bearer ${token}`
+          },
+        });
 
       console.log('Réponse de la requête:', response.data);
-      // Mettez à jour les états en conséquence si nécessaire
+      setName(response.data.name);
+      setEmail(response.data.email);
+      
       setIsUpdated(true);
     } catch (error) {
       if (error.response) {

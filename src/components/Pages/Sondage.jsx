@@ -1,165 +1,151 @@
-/* eslint-disable no-unused-vars */
-import {useState} from 'react'
-import Sidebar from './Sidebar'
+
+import React, { useState } from 'react';
+import Sidebar from './Sidebar';
 import Header from './Header';
-import HomeDash from './HomeDash';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import FormCheckLabel from 'react-bootstrap/esm/FormCheckLabel';
-import './style.css'
+import axios from 'axios';
 
 function Sondage() {
-  const [sondageList, setSondageList] = useState([{ sondage: "", question:"", reponse:"" }]);
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [questions, setQuestions] = useState([{ question: '', responses: [''] }]);
 
-  const handleSondageChange = (e, index) => {
-    const { name, value } = e.target;
-    const list = [...sondageList];
-    list[index][name] = value;
-    setSondageList(list);
+  const handleQuestionChange = (e, index) => {
+    const { value } = e.target;
+    const updatedQuestions = [...questions];
+    updatedQuestions[index].question = value;
+    setQuestions(updatedQuestions);
   };
 
-  const handleSondageRemove = (index) => {
-    const list = [...sondageList];
-    list.splice(index, 1);
-    setSondageList(list);
+  const handleResponseChange = (e, questionIndex, responseIndex) => {
+    const { value } = e.target;
+    const updatedQuestions = [...questions];
+    updatedQuestions[questionIndex].responses[responseIndex] = value;
+    setQuestions(updatedQuestions);
   };
-  
 
-  const handleSondageAdd = () => {
-    setSondageList([...sondageList, { sondage: "", question:"", reponse:"" }]);
+  const handleAddResponse = (questionIndex) => {
+    const updatedQuestions = [...questions];
+    updatedQuestions[questionIndex].responses.push('');
+    setQuestions(updatedQuestions);
   };
+
+  const handleRemoveResponse = (questionIndex, responseIndex) => {
+    const updatedQuestions = [...questions];
+    updatedQuestions[questionIndex].responses.splice(responseIndex, 1);
+    setQuestions(updatedQuestions);
+  };
+
+  const handleAddQuestion = () => {
+    setQuestions([...questions, { question: '', responses: [''] }]);
+  };
+
+  const handleRemoveQuestion = (index) => {
+    const updatedQuestions = [...questions];
+    updatedQuestions.splice(index, 1);
+    setQuestions(updatedQuestions);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const token = sessionStorage.getItem('token');
+
+    try {
+      const response = await axios.post('http://localhost:8000/api/survey', {
+        title: title,
+        description: description,
+        questions: questions,
+      }, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      console.log('Réponse de la requête POST:', response.data);
+      // Réinitialiser les champs du formulaire après la soumission réussie
+      setTitle('');
+      setDescription('');
+      setQuestions([{ question: '', responses: [''] }]);
+      // Afficher un message de succès ou effectuer une redirection si nécessaire
+    } catch (error) {
+      console.error('Erreur lors de la requête:', error.message);
+      // Afficher un message d'erreur approprié
+    }
+  };
+
   return (
     <div className="d-flex">
-      <div className="w-auto">
-
-          <Sidebar />
-      </div>
+      <Sidebar />
       <div className="col overflow-auto">
         <Header />
-        <div className="d-flex mx-auto my-4 col-lg-7 col-md-10 col-sm-10 flex-wrap" id="content">
-
+        <div className="mx-auto my-4 col-lg-7 col-md-10 col-sm-10 flex-wrap" id="content">
           <h1>Créer votre sondage</h1>
-
-          <form className="form-control my-4" id="survey" autoComplete="off">
-            <div className="d-flex justify-content-between align-items-center flex-wrap" id="header">
-              <input className="my-4 mx-4" type="text" name="titre_sondage" placeholder="Titre Sondage"/>
-              <textarea className="textarea mx-4 mb-4" rows={3} cols={70} name="description_sondage" placeholder="Description sondage">
-
-              </textarea>
+          <form className="form-control mt-4" id="survey" autoComplete="off" onSubmit={handleSubmit}>
+            <div className="d-flex justify-content-between align-items-center flex-wrap">
+              <input
+                className="my-4 mx-4"
+                type="text"
+                name="title"
+                placeholder="Titre Sondage"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+              />
+              <textarea
+                className="mx-4 mb-4"
+                rows={3}
+                cols={70}
+                name="description"
+                placeholder="Description sondage"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+              />
             </div>
-          </form>
 
-
-          <form className="form-control" id="survey" autoComplete="off">
             <div className="form-field">
-              <label htmlFor="question">Question(s)</label>
-              <div className="header">
-                <input
-                  name="question_texte"
-                  type="text"
-                  id="question_texte"
-                  placeholder="Demandez-lui son nom..."
-                  required
-                />
-                <br/>
-                <input
-                  name="reponse_texte"
-                  type="text"
-                  id="reponse_texte"
-                  placeholder="Votre nom..."
-                  required
-                  className="my-2"
-                />
-              </div>
-              
+              <label>Question(s)</label>
               <div className="content mt-4">
-                {sondageList.map((singleSondage, index) => (
+                {questions.map((question, index) => (
                   <div key={index} className="sondages">
-                    <div className="first-division">
-                      <input
-                        name="question_texte"
-                        type="text"
-                        id="question_texte"
-                        value={singleSondage.sondage}
-                        placeholder="Posez votre question..."
-                        onChange={(e) => handleSondageChange(e, index)}
-                        required
-                      />
-
-                      <div class="form-check d-flex align-items-center justify-content-around">
-                        <input class="form-check-input" type="radio" name="" id=""/>
+                    <input
+                      type="text"
+                      value={question.question}
+                      placeholder="Posez votre question..."
+                      onChange={(e) => handleQuestionChange(e, index)}
+                      required
+                    />
+                    {question.responses.map((response, responseIndex) => (
+                      <div key={responseIndex} className="form-check d-flex align-items-center justify-content-around">
+                        <input
+                          className="form-check-input"
+                          type="radio"
+                          name={`response_${index}`}
+                          id={`response_${index}_${responseIndex}`}
+                        />
                         <input
                           type="text"
-                          id="reponse_texte"
-                          name="reponse_texte"
-                          value={singleSondage.sondage}
+                          value={response}
                           placeholder="Votre réponse..."
-                          onChange={(e) => handleSondageChange(e, index)}
+                          onChange={(e) => handleResponseChange(e, index, responseIndex)}
                           required
-                          className="my-2"for="reponse"/>
+                        />
+                        {responseIndex === question.responses.length - 1 && (
+                          <button type="button" className="add-btn ms-2" style={{width:300}} onClick={() => handleAddResponse(index)}>Ajouter une réponse</button>
+                        )}
+                        {responseIndex !== 0 && (
+                          <button type="button" className="remove-btn" onClick={() => handleRemoveResponse(index, responseIndex)}>Supprimer</button>
+                        )}
                       </div>
-                      <div class="form-check d-flex align-items-center justify-content-around">
-                        <input class="form-check-input" type="radio" name="" id=""/>
-                        <input type="text"
-                          id="reponse_texte"
-                          name="reponse_texte"
-                          value={singleSondage.sondage}
-                          placeholder="Votre réponse..."
-                          onChange={(e) => handleSondageChange(e, index)}
-                          required
-                          className="my-2"for="reponse"/>
-                      </div>
-                      <div class="form-check d-flex align-items-center justify-content-around">
-                        <input class="form-check-input" type="radio" name="" id=""/>
-                        <input type="text"
-                          id="reponse_texte"
-                          name="reponse_texte"
-                          value={singleSondage.sondage}
-                          placeholder="Votre réponse..."
-                          onChange={(e) => handleSondageChange(e, index)}
-                          required
-                          className="my-2"for="reponse"/>
-                      </div>
-
-                    </div>
-                    {sondageList.length - 1 === index && sondageList.length < 4 && (
-                        <button
-                          type="button"
-                          onClick={handleSondageAdd}
-                          className="add-btn"
-                        >
-                          <span>Ajouter une question</span>
-                        </button>
-                      )}
-                    <div className="second-division">
-                      {sondageList.length !== 1 && (
-                        <button
-                          type="button"
-                          onClick={() => handleSondageRemove(index)}
-                          className="remove-btn"
-                        >
-                          <span>Supprimer</span>
-                        </button>
-                      )}
-                    </div>
+                    ))}
+                    {index === questions.length - 1 && (
+                      <button type="button" className="add-btn" onClick={handleAddQuestion}>Ajouter une question</button>
+                    )}
+                    {index !== 0 && (
+                      <button type="button" className="remove-btn" onClick={() => handleRemoveQuestion(index)}>Supprimer</button>
+                    )}
                   </div>
                 ))}
               </div>
             </div>
-            {/* <div className="output">
-              <h2>Output</h2>
-              {serviceList &&
-                serviceList.map((singleService, index) => (
-                  <ul key={index}>
-                    {singleService.service && <li>{singleService.service}</li>}
-                  </ul>
-                ))}
-            </div> */}
-            <button
-            type="submit"
-            className="submit-btn"
-            >
-              <span>Enregistrer</span>
-            </button>
+            <button type="submit" className="submit-btn">Enregistrer</button>
           </form>
         </div>
       </div>
@@ -167,4 +153,4 @@ function Sondage() {
   );
 }
 
-export default Sondage
+export default Sondage;

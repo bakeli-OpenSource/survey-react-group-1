@@ -5,12 +5,20 @@ import { Link, Navigate } from "react-router-dom";
 import "./login.css";
 
 function Header() {
+  
   const [isLogout, setIsLogout] = useState(false); // Etat pour gérer la redirection
   const [error, setError] = useState(null);
 
+  // Récupérer des données depuis sessionStorage
+  let token = sessionStorage.getItem('token');
+  
   const logout = async () => {
     try {
-      const response = await axios.delete("http://localhost:8000/api/logout");
+      const response = await axios.delete("http://localhost:8000/api/logout",{
+        headers:{
+          "Authorization": `Bearer ${token}`
+        }, 
+      });
       console.log("Réponse de la requête DELETE:", response.data);
       // Mettre à jour l'état pour déclencher la redirection
       setIsLogout(true);
