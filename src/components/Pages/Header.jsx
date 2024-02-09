@@ -1,8 +1,10 @@
+/* eslint-disable no-unused-vars */
 import { useState, useEffect } from "react"; // Ajoutez useEffect ici
 import axios from "axios";
 import { Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { Link, Navigate } from "react-router-dom";
 import "./login.css";
+import { instance } from "../../api";
 
 function Header() {
   
@@ -14,7 +16,7 @@ function Header() {
   
   const logout = async () => {
     try {
-      const response = await axios.delete("http://localhost:8000/api/logout",{
+      const response = await instance.delete("/logout",{
         headers:{
           "Authorization": `Bearer ${token}`
         }, 

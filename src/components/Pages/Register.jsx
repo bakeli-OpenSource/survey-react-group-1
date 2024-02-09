@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import {useState} from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -10,6 +11,7 @@ import imgRegister from "../../components/images/register.png";
 import logoSmall from "../../components/images/logo-small.png";
 import "./login.css";
 import axios from "axios";
+import { instance } from "../../api";
 // import toast, { Toaster } from 'react-hot-toast';
 // import { useNavigate } from "react-router-dom";
 
@@ -26,7 +28,7 @@ const Register = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:8000/api/register', {
+      const response = await instance.post('register', {
         name: name,
         email: email,
         password: password
@@ -86,12 +88,12 @@ const Register = () => {
                 marginLeft:'100px'
                 }}
                 onSubmit={handleSubmit}>
-                <Form.Group className="" controlId="formBasicName">
+                <Form.Group className="" controlId="formBasicEmail">
                   {/* <Form.Label>Email address</Form.Label> */}
                   <Form.Control
                     type="text"
-                    name="name"
-                    // id='name'
+                    className=""
+                    id='name'
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     style={{
@@ -101,15 +103,12 @@ const Register = () => {
                       marginTop:'95px'
                     }}
                     placeholder="Enter Nom Complet"
-                  /> 
-                  </Form.Group>
-                   <br />
-                 <Form.Group className="" controlId="formBasicEmail">
+                  />  <br />
+                 
                   <Form.Control
                     type="email"
                     className=""
-                    // id='email'
-                    name='email'
+                    id='email'
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     style={{
@@ -120,12 +119,11 @@ const Register = () => {
                     placeholder="Enter email"
                   />
                 </Form.Group> <br />
-                
-                <Form.Group className="" controlId="formBasicPassword">
+
                   <Form.Control
-                    name="password"
+                    // name="password"
                     type="password"
-                    // id='name'
+                    id='name'
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     style={{
@@ -134,7 +132,7 @@ const Register = () => {
                       width: "70%",
                     }}
                     placeholder="Password"
-                  /></Form.Group> <br />
+                  />
                 <Form.Text className="text-muted">
                   <p
                     className="mt-3"

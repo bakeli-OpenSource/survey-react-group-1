@@ -8,6 +8,7 @@ import imgRegister from "../../components/images/register.png";
 import logoSmall from "../../components/images/logo-small.png";
 import "./login.css";
 import axios from "axios";
+import { instance } from "../../api";
 
 function User() {
   const [name, setName] = useState('');
@@ -22,7 +23,7 @@ function User() {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/api/userData',{
+        const response = await instance.get('userData',{
           headers:{
             "Authorization": `Bearer ${token}`
           },
@@ -46,7 +47,7 @@ function User() {
     e.preventDefault();
 
     try {
-      const response = await axios.put('http://localhost:8000/api/update', {
+      const response = await instance.put('update', {
         name: name,
         email: email,
         password: password,

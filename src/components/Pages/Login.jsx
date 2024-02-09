@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import {useState} from "react";
 import axios from "axios";
 import { useLocation } from 'react-router-dom';
@@ -10,6 +11,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import imgLogin from "../../components/images/login.png";
 import logoSmall from "../../components/images/logo-small.png";
 import './login.css'
+import { instance } from "../../api";
 
 const Login = () => {
 
@@ -28,7 +30,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:8000/api/login', {
+      const response = await instance.post('/login', {
         email: email,
         password: password
       });

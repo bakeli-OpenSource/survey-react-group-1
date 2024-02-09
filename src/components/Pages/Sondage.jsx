@@ -1,8 +1,10 @@
+/* eslint-disable no-unused-vars */
 
 import React, { useState } from 'react';
 import Sidebar from './Sidebar';
 import Header from './Header';
 import axios from 'axios';
+import { instance } from '../../api';
 
 function Sondage() {
   const [title, setTitle] = useState('');
@@ -50,7 +52,7 @@ function Sondage() {
     const token = sessionStorage.getItem('token');
 
     try {
-      const response = await axios.post('http://localhost:8000/api/survey', {
+      const response = await instance.post('survey', {
         title: title,
         description: description,
         questions: questions,
