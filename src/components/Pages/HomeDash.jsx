@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 import Card from "react-bootstrap/Card";
@@ -10,7 +11,30 @@ import { BsFillBarChartFill } from "react-icons/bs";
 import { BarChart, Bar,  Rectangle, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line } from 'recharts';
 // end graph
 
-function HomeDash() {
+// function HomeDash() {
+//   const [total, setTotal] = useState(0);
+//   const [error, setError] = useState('');
+//   const token = sessionStorage.getItem('token');
+
+//   useEffect(() => {
+//     const fetchData = async () => {
+//       try {
+//         const response = await axios.get('http://localhost:8000/api/survey/count', {
+//           headers: {
+//             Authorization: `Bearer ${token}`
+//           }
+//         });
+//         console.log('Réponse de la requête:', response.data);
+//         setTotal(response.data.totalUserPosts); // Mettre à jour les sondages avec les données récupérées
+//       } catch (error) {
+//         console.error('Erreur lors de la récupération des données des sondages:', error.message);
+//         setError('Erreur lors de la récupération des données des sondages');
+//       }
+//     };
+
+//     fetchData();
+//   }, [token]); // Déclencher l'effet uniquement lorsque le token change
+
 
 // Graph
 
@@ -83,7 +107,7 @@ const data = [
                     <Card.Text className="text-center mt-4">
                         <div className="d-flex">
                         {/* <BsFillBarChartFill /> */}
-                        <h3 className="">33</h3>
+                        <h3 className=""></h3>
                         </div>
                     </Card.Text>
                   </Card.Body>

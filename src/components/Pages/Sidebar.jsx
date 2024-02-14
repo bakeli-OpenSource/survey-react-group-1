@@ -12,9 +12,9 @@ import './style.css'
 import { Link } from 'react-router-dom';
 
 function Sidebar() {
-    const [active, SetActive] = useState('');
+    const [active, SetActive] = useState(1);
   return (
-    <div className='sidebar d-flex justify-content-between flex-column  text-dark py-3 ps-3 pe-5' style={{height:'auto'}}>
+    <div className='sidebar d-flex justify-content-between flex-column  text-dark py-3 ps-3 pe-5' >
         <div>
             <a href="" className='p-3 text-dark text-decoration-none'>
             {/* <CiLogin />  */}
@@ -29,30 +29,30 @@ function Sidebar() {
             <ul className="nav nav-pill flex-column">
                 <li className= {active === 1 ? "active nav-item p-3 " : "nav-item p-3"}
                  onClick={e => SetActive(1)}>
-                    <a href="/home-dash" className='p-3  text-decoration-none'>
-                        <AiOutlineDashboard className='me-3 fs-2'/>
-                        <span className='fs-4'><strong>Dashboard</strong></span>
-                    </a>
+                    <Link to="/home-dash" className='p-3  text-decoration-none'>
+                        <AiOutlineDashboard className='icon'/>
+                        <span className='span'><strong>Dashboard</strong></span>
+                    </Link>
                 </li>
                 <li className= {active === 2 ? "active nav-item p-3 " : "nav-item p-3"}
                  onClick={e => SetActive(2)} >
                     <Link to="/create-sondage" className='p-3  text-decoration-none'>
-                    <AiOutlineBarChart className='me-3 fs-2'/>
-                        <span className='fs-4'><strong>Sondage</strong></span>
+                    <AiOutlineBarChart className='icon'/>
+                        <span className='span'><strong>Sondage</strong></span>
                     </Link>
                 </li>
                 <li className= {active === 3 ? "active nav-item p-3 " : "nav-item p-3"}
                  onClick={e => SetActive(3)}>
                     <Link to="/voir-sondage" className='p-3 text-decoration-none'> 
-                        <AiOutlineEye className='me-3 fs-2'/>
-                        <span className='fs-4'><strong>Voir Sondage</strong></span>
+                        <AiOutlineEye className='icon'/>
+                        <span className='span'><strong>Voir Sondage</strong></span>
                     </Link>
                 </li>
                 <li className= {active === 4 ? "active nav-item p-3 " : "nav-item p-3"}
                  onClick={e => SetActive(4)}>
-                    <Link to="/resultat-sondage" className='p-3  text-decoration-none navLink'>
-                        <AiOutlineFall className='me-3 fs-2'/>
-                        <span className='fs-4'><strong>Resultats</strong></span>
+                    <Link to="/resultat-sondage" className='p-3  text-decoration-none'>
+                        <AiOutlineFall className='icon'/>
+                        <span className='span'><strong>Resultats</strong></span>
                     </Link>
                 </li>
             </ul>
@@ -61,8 +61,8 @@ function Sidebar() {
         <hr className="text-dark mt-2" />
         <div className="nav-item p-3">
             <Link to="/user-profil" className='p-3 text-dark text-decoration-none'>
-                <FaRegUserCircle className='me-3 fs-2'/>
-                <span className='fs-4'><strong>User</strong></span>
+                <FaRegUserCircle className='icon'/>
+                <span className='span'><strong>User</strong></span>
             </Link>
         </div>
         </div>

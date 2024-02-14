@@ -52,7 +52,7 @@ function Sondage() {
     const token = sessionStorage.getItem('token');
 
     try {
-      const response = await instance.post('survey', {
+      const response = await axios.post('http://localhost:8000/api/survey', {
         title: title,
         description: description,
         questions: questions,
@@ -63,6 +63,8 @@ function Sondage() {
       });
 
       console.log('Réponse de la requête POST:', response.data);
+      // Stocker les données soumises dans l'état pour affichage ultérieur
+      // setSubmittedData(response.data);
       // Réinitialiser les champs du formulaire après la soumission réussie
       setTitle('');
       setDescription('');
@@ -79,7 +81,7 @@ function Sondage() {
       <Sidebar />
       <div className="col overflow-auto">
         <Header />
-        <div className="mx-auto my-4 col-lg-7 col-md-10 col-sm-10 flex-wrap" id="content">
+        <div className="mx-auto my-4 col-lg-8 col-md-10 col-sm-10 flex-wrap" id="content">
           <h1>Créer votre sondage</h1>
           <form className="form-control mt-4" id="survey" autoComplete="off" onSubmit={handleSubmit}>
             <div className="d-flex justify-content-between align-items-center flex-wrap">
@@ -104,7 +106,7 @@ function Sondage() {
 
             <div className="form-field">
               <label>Question(s)</label>
-              <div className="content mt-4">
+              <div className="content my-2">
                 {questions.map((question, index) => (
                   <div key={index} className="sondages">
                     <input
@@ -113,6 +115,7 @@ function Sondage() {
                       placeholder="Posez votre question..."
                       onChange={(e) => handleQuestionChange(e, index)}
                       required
+                      className='my-2'
                     />
                     {question.responses.map((response, responseIndex) => (
                       <div key={responseIndex} className="form-check d-flex align-items-center justify-content-around">
@@ -130,7 +133,7 @@ function Sondage() {
                           required
                         />
                         {responseIndex === question.responses.length - 1 && (
-                          <button type="button" className="add-btn ms-2" style={{width:300}} onClick={() => handleAddResponse(index)}>Ajouter une réponse</button>
+                          <button type="button" className="add-btn mx-2" style={{width:250}} onClick={() => handleAddResponse(index)}>Ajouter une réponse</button>
                         )}
                         {responseIndex !== 0 && (
                           <button type="button" className="remove-btn" onClick={() => handleRemoveResponse(index, responseIndex)}>Supprimer</button>

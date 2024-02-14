@@ -18,6 +18,65 @@
     /* background-color: #FF9700; */
     background-color: #EDF2F9;
 }
+.sidebar .span{
+  font-size: 25px;
+}
+.sidebar .icon{
+  font-size: 45px;
+  margin-right: 5px;
+}
+/* Ajouter des requêtes multimédias pour la réactivité */
+@media (max-width: 720px) {
+  .sidebar {
+    width: 45%;
+  }
+  .sidebar .span{
+    font-size: 20px;
+  }
+  .sidebar .icon{
+    font-size: 25px;
+  }
+}
+
+@media (max-width: 540px) {
+  .sidebar {
+    width: 45%;
+  }
+  .sidebar img{
+    width: 100%;
+  }
+  .sidebar .span{
+    font-size: 12px;
+  }
+  .sidebar .icon{
+    font-size: 15px;
+  }
+}
+@media (max-width: 390px) {
+  .sidebar {
+    width: 38%;
+    margin: 0;
+    padding: 0;
+  }
+  .sidebar img{
+    width: 100%;
+  }
+  .sidebar .span{
+    display: none;
+  }
+  .sidebar .icon{
+    font-size: 20px;
+    margin: 0;
+  }
+}
+
+  /* .sidebar.active {  */
+    /* left: 0; Afficher la barre latérale lorsqu'elle est active */
+  /* } */
+/* } */ */
+
+
+
 
 * {
     box-sizing: border-box;
