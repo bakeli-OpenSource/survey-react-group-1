@@ -65,7 +65,7 @@ const data = [
     <div className="d-flex">
       <Sidebar />
       
-      <div className="col overflow-auto bg-light">
+      <div className="col overflow-auto">
         <Header />
         <div>
           <div className="p-5">
@@ -73,8 +73,9 @@ const data = [
               <div className="row">
                 <Card
                   border=""
-                  style={{ width: "16rem" }}
+                  style={{ width: "16rem" , backgroundColor: '#fff'}}
                   className="me-5 card"
+  
                 >
                   <Card.Body>
                     <Card.Title className="text-center">
@@ -91,7 +92,7 @@ const data = [
 
                 <Card
                   border=""
-                  style={{ width: "16rem" }}
+                  style={{ width: "16rem", backgroundColor: '#fff'}}
                   className="me-5 card"
                 >
                   <Card.Body>
@@ -106,7 +107,7 @@ const data = [
 
                 <Card
                   border=""
-                  style={{ width: "16rem" }}
+                  style={{ width: "16rem" , backgroundColor: '#fff'}}
                   className="me-5 card"
                 >
                   <Card.Body>

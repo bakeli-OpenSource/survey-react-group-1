@@ -6,8 +6,7 @@ import Sidebar from './Sidebar'
 function ViewSondage() {
   return (
     <div className="d-flex">
-            
-
+      
                 <Sidebar />
             
             <div className="col overflow-auto">
