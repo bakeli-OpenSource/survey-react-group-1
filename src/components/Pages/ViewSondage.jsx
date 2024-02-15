@@ -13,7 +13,7 @@ function ViewSondage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/api/survey', {
+        const response = await axios.get('http://localhost:8003/api/survey', {
           headers: {
             Authorization: `Bearer ${token}`
           }
