@@ -1,22 +1,24 @@
-.sidebar ul li :hover{
-    background-color: #009788;
+.sidebar ul li  :hover{
+    background-color: #F4F4F5;
     border-radius: 5px;
-    color: #fff;
+    padding: 15px 20px;
+    color: #3F3F46;
 }
 
 .active {
-    background-color: #009788;
-    border-radius: 5px;
-    color: #fff;
+  background-color: #F4F4F5;
+  border-radius: 5px;
+  color: #3F3F46;
 }
 
 .sidebar ul li a{
-    color: #4A5460;
+    text-decoration: none;
+    color: #3F3F46;
 }
 
 .sidebar{
     /* background-color: #FF9700; */
-    background-color: #EDF2F9;
+    background-color: #fff;
 }
 .sidebar .span{
   font-size: 25px;
@@ -177,5 +179,9 @@
   .second-division button {
     color: red;
     border: 1px solid red;
+  }
+
+  .fs-4{
+    font-weight: 100px;
   }
   
