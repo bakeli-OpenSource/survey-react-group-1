@@ -17,7 +17,7 @@ function Header() {
   
   const logout = async () => {
     try {
-      const response = await axios.delete("http://localhost:8003/api/logout",{
+      const response = await instance.delete("logout",{
         headers:{
           "Authorization": `Bearer ${token}`
         }, 

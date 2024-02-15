@@ -47,7 +47,7 @@ function User() {
     e.preventDefault();
 
     try {
-      const response = await axios.put('http://localhost:8003/api/update', {
+      const response = await instance.put('update', {
         name: name,
         email: email,
         password: password,

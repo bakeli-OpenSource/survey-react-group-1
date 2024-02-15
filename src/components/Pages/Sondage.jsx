@@ -52,7 +52,7 @@ function Sondage() {
     const token = sessionStorage.getItem('token');
 
     try {
-      const response = await axios.post('http://localhost:8003/api/survey', {
+      const response = await instance.post('survey', {
         title: title,
         description: description,
         questions: questions,
