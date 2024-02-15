@@ -11,29 +11,23 @@ import { BsFillBarChartFill } from "react-icons/bs";
 import { BarChart, Bar,  Rectangle, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line } from 'recharts';
 // end graph
 
-// function HomeDash() {
-//   const [total, setTotal] = useState(0);
-//   const [error, setError] = useState('');
-//   const token = sessionStorage.getItem('token');
+function HomeDash() {
+  // const [totalPosts, setTotalPosts] = useState(0);
+  // const token = sessionStorage.getItem('token');
 
-//   useEffect(() => {
-//     const fetchData = async () => {
-//       try {
-//         const response = await axios.get('http://localhost:8000/api/survey/count', {
-//           headers: {
-//             Authorization: `Bearer ${token}`
-//           }
-//         });
-//         console.log('Réponse de la requête:', response.data);
-//         setTotal(response.data.totalUserPosts); // Mettre à jour les sondages avec les données récupérées
-//       } catch (error) {
-//         console.error('Erreur lors de la récupération des données des sondages:', error.message);
-//         setError('Erreur lors de la récupération des données des sondages');
-//       }
-//     };
-
-//     fetchData();
-//   }, [token]); // Déclencher l'effet uniquement lorsque le token change
+  // useEffect(() => {
+  //   axios.get('http://localhost:8000/api/survey', {
+  //     headers: {
+  //       Authorization: `Bearer ${token}`
+  //     }
+  //   })
+  //   .then(response => {
+  //     setTotalPosts(response.data.total_posts);
+  //   })
+  //   .catch(error => {
+  //     console.error('Error fetching total posts:', error);
+  //   });
+  // }, []);
 
 
 // Graph
@@ -102,7 +96,7 @@ const data = [
                 >
                   <Card.Body>
                     <Card.Title className="text-center">
-                      Nombre Sondages 
+                      Sondages totaux créés
                     </Card.Title>
                     <Card.Text className="text-center mt-4">
                         <div className="d-flex">

@@ -47,24 +47,15 @@ function ViewSondage() {
     ));
     return (
       <div className="row">
-        {/* <div className="row">
-          <h3 className="mx-3">{sondage?.title}</h3>
-          <p>{sondage?.description}</p>
-        </div>
-          {questionsList} */}
-          
-
-
-          <Card className="text-center my-4">
-            <Card.Header><Card.Title className="text-success">{sondage?.title}</Card.Title></Card.Header>
-            <Card.Body>
-              <Card.Text>
-              {sondage?.description}
-              </Card.Text>
-            </Card.Body>
-            <Card.Footer className="text-muted">{questionsList}</Card.Footer>
-          </Card>
-        
+        <Card className="text-center my-4">
+          <Card.Header><Card.Title className="text-success">{sondage?.title}</Card.Title></Card.Header>
+          <Card.Body>
+            <Card.Text>
+            {sondage?.description}
+            </Card.Text>
+          </Card.Body>
+          <Card.Footer className="text-muted">{questionsList}</Card.Footer>
+        </Card> 
       </div>
     );
   };
