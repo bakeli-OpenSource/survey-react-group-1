@@ -11,7 +11,7 @@ import { BsFillBarChartFill } from "react-icons/bs";
 import { BarChart, Bar,  Rectangle, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line } from 'recharts';
 // end graph
 
-// function HomeDash() {
+function HomeDash() {
 //   const [total, setTotal] = useState(0);
 //   const [error, setError] = useState('');
 //   const token = sessionStorage.getItem('token');
