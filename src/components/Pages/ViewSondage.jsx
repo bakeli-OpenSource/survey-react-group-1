@@ -71,7 +71,6 @@ function ViewSondage() {
 
   return (
     <div className="d-flex">
-<<<<<<< HEAD
       <Sidebar />
       <div className="col overflow-auto">
         <Header />
@@ -83,17 +82,6 @@ function ViewSondage() {
             })}
           </div>
         </div>
-=======
-      
-                <Sidebar />
-            
-            <div className="col overflow-auto">
-            <Header />
-               <div>
-                <h2>Voir Sondage</h2>
-               </div>
-            </div>
->>>>>>> e0789f1a5f754fd8a04709ebc327a1d4bcfe750a
       </div>
     </div>
   );
