@@ -1,22 +1,24 @@
-.sidebar ul li :hover{
-    background-color: #009788;
+.sidebar ul li  :hover{
+    background-color: #F4F4F5;
     border-radius: 5px;
-    color: #fff;
+    padding: 15px 20px;
+    color: #3F3F46;
 }
 
 .active {
-    background-color: #009788;
-    border-radius: 5px;
-    color: #fff;
+  background-color: #F4F4F5;
+  border-radius: 5px;
+  color: #3F3F46;
 }
 
 .sidebar ul li a{
-    color: #4A5460;
+    text-decoration: none;
+    color: #3F3F46;
 }
 
 .sidebar{
     /* background-color: #FF9700; */
-    background-color: #EDF2F9;
+    background-color: #fff;
 }
 .sidebar .span{
   font-size: 25px;
@@ -86,9 +88,9 @@
     box-shadow: 0px 3px 5px 0;
   } */
   
-  #survey{
+  /* #survey{
     box-shadow: 0 3px 3px 0;
-  }
+  } */
 
 
   /* .App {
@@ -162,6 +164,16 @@
     border: 1px solid rgb(0, 208, 255);
     color: #FFF;
   }
+  .remove-btn{
+    align-self: flex-start;
+    display: flex;
+    align-items: center;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    background: red;
+    border: 1px solid rgb(0, 208, 255);
+    color: #FFF;
+  }
   
   .submit-btn{
     float: inline-end;
@@ -169,13 +181,17 @@
     background: #FF9700;
     color: #f8f6f4;
     border: 1px solid #f5f0ed;
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
     padding: 5px 15px;
   }
   
   .second-division button {
     color: red;
     border: 1px solid red;
+  }
+
+  .fs-4{
+    font-weight: 100px;
   }
   

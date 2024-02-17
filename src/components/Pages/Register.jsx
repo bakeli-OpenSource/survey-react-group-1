@@ -20,9 +20,7 @@ const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
-  const [successMessage, setSuccessMessage] = useState(null);
   const [isRegistered, setIsRegistered] = useState(false); // Etat pour gérer la redirection
-  // const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -44,8 +42,6 @@ const Register = () => {
       setEmail('');
       setPassword('');
       setIsRegistered(true);
-      setSuccessMessage('Inscription réussie ! Vous pouvez maintenant vous connecter.');
-      // navigate("/login")
     } catch (error) {
       if (error.response) {
         // Si la réponse est reçue mais avec un statut d'erreur
@@ -55,7 +51,6 @@ const Register = () => {
       } else if (error.request) {
         // Si la requête est faite mais aucune réponse n'est reçue
         console.error('Pas de réponse de la requête:', error.request);
-        setSuccessMessage(null);
       } else {
         // Autres erreurs
         console.error('Erreur lors de la requête:', error.message);

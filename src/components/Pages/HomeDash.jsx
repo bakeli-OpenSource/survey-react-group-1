@@ -7,77 +7,114 @@ import Card from "react-bootstrap/Card";
 import "./login.css";
 import { AiOutlineDashboard } from "react-icons/ai";
 import { BsFillBarChartFill } from "react-icons/bs";
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import { Link, Navigate } from "react-router-dom";
 // graph
 import { BarChart, Bar,  Rectangle, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line } from 'recharts';
 // end graph
 
 function HomeDash() {
-  // const [totalPosts, setTotalPosts] = useState(0);
-  // const token = sessionStorage.getItem('token');
+  const [totalPosts, setTotalPosts] = useState(0);
+  const [error, setError] = useState('');
+  const token = sessionStorage.getItem('token');
+  const [show, setShow] = useState(false);
 
-  // useEffect(() => {
-  //   axios.get('http://localhost:8000/api/survey', {
-  //     headers: {
-  //       Authorization: `Bearer ${token}`
-  //     }
-  //   })
-  //   .then(response => {
-  //     setTotalPosts(response.data.total_posts);
-  //   })
-  //   .catch(error => {
-  //     console.error('Error fetching total posts:', error);
-  //   });
-  // }, []);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [questions, setQuestions] = useState([{ question: '', responses: [''] }]);
+  const [isCreated, setIsCreated] = useState(false); // Etat pour gérer la redirection
 
-// Graph
+  const handleQuestionChange = (e, index) => {
+    const { value } = e.target;
+    const updatedQuestions = [...questions];
+    updatedQuestions[index].question = value;
+    setQuestions(updatedQuestions);
+  };
 
-const data = [
-  {
-    name: 'Page A',
-    uv: 4000,
-    pv: 2400,
-    amt: 2400,
-  },
-  {
-    name: 'Page B',
-    uv: 3000,
-    pv: 1398,
-    amt: 2210,
-  },
-  {
-    name: 'Page C',
-    uv: 2000,
-    pv: 9800,
-    amt: 2290,
-  },
-  {
-    name: 'Page D',
-    uv: 2780,
-    pv: 3908,
-    amt: 2000,
-  },
-  {
-    name: 'Page E',
-    uv: 1890,
-    pv: 4800,
-    amt: 2181,
-  },
-  {
-    name: 'Page F',
-    uv: 2390,
-    pv: 3800,
-    amt: 2500,
-  },
-  {
-    name: 'Page G',
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
-];
+  const handleResponseChange = (e, questionIndex, responseIndex) => {
+    const { value } = e.target;
+    const updatedQuestions = [...questions];
+    updatedQuestions[questionIndex].responses[responseIndex] = value;
+    setQuestions(updatedQuestions);
+  };
 
-// end graph
+  const handleAddResponse = (questionIndex) => {
+    const updatedQuestions = [...questions];
+    updatedQuestions[questionIndex].responses.push('');
+    setQuestions(updatedQuestions);
+  };
+
+  const handleRemoveResponse = (questionIndex, responseIndex) => {
+    const updatedQuestions = [...questions];
+    updatedQuestions[questionIndex].responses.splice(responseIndex, 1);
+    setQuestions(updatedQuestions);
+  };
+
+  const handleAddQuestion = () => {
+    setQuestions([...questions, { question: '', responses: [''] }]);
+  };
+
+  const handleRemoveQuestion = (index) => {
+    const updatedQuestions = [...questions];
+    updatedQuestions.splice(index, 1);
+    setQuestions(updatedQuestions);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const token = sessionStorage.getItem('token');
+
+    try {
+      const response = await axios.post('http://localhost:8000/api/survey', {
+        title: title,
+        description: description,
+        questions: questions,
+      }, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      console.log('Réponse de la requête POST:', response.data);
+      // Réinitialiser les champs du formulaire après la soumission réussie
+      setTitle('');
+      setDescription('');
+      setQuestions([{ question: '', responses: [''] }]);
+      setIsCreated(true);
+      // Afficher un message de succès ou effectuer une redirection si nécessaire
+    } catch (error) {
+      console.error('Erreur lors de la requête:', error.message);
+      // Afficher un message d'erreur approprié
+    }
+  };
+  
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://localhost:8000/api/survey/count', {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+        console.log('Réponse de la requête:', response.data);
+        setTotalPosts(response.data.totalPosts); // Mettre à jour les sondages créés avec les données récupérées
+      } catch (error) {
+        console.error('Erreur lors de la récupération des données des sondages:', error.message);
+        setError('Erreur lors de la récupération des données des sondages');
+      }
+    };
+
+    fetchData();
+  }, [token]); // Déclencher l'effet uniquement lorsque le token change
+
+  if (isCreated) {
+    return <Navigate to="/voir-sondage?successMessage=Sondage%20créé%20!%20avec%20succés"/>;
+  }
 
   return (
     <div className="d-flex">
@@ -87,112 +124,115 @@ const data = [
         <Header />
         <div>
           <div className="p-5">
-            <div className="container-fluid">
+            <div className="container-fluid d-flex align-item-center justify-content-center">
               <div className="row">
                 <Card
                   border=""
-                  style={{ width: "16rem" }}
-                  className="me-5 card"
+                  style={{ width: "25rem" }}
+                  className="card"
                 >
                   <Card.Body>
                     <Card.Title className="text-center">
                       Sondages totaux créés
                     </Card.Title>
                     <Card.Text className="text-center mt-4">
-                        <div className="d-flex">
-                        {/* <BsFillBarChartFill /> */}
-                        <h3 className=""></h3>
+                        <div className="d-flex align-item-center justify-content-center text-success">
+                          <h3 className="fs-1">{totalPosts}</h3>
                         </div>
                     </Card.Text>
                   </Card.Body>
                 </Card>
-
-                <Card
-                  border=""
-                  style={{ width: "16rem" }}
-                  className="me-5 card"
-                >
-                  <Card.Body>
-                    <Card.Title className="text-center">
-                      Sondages 
-                    </Card.Title>
-                    <Card.Text className="text-center mt-4">
-                      <h3>20</h3>
-                    </Card.Text>
-                  </Card.Body>
-                </Card>
-
-                <Card
-                  border=""
-                  style={{ width: "16rem" }}
-                  className="me-5 card"
-                >
-                  <Card.Body>
-                    <Card.Title className="text-center">
-                       Sondages partagés
-                    </Card.Title>
-                    <Card.Text className="text-center mt-4">
-                      <h3>13</h3>
-                    </Card.Text>
-                  </Card.Body>
-                </Card>
               </div>
-            </div>
+            </div> 
           </div>
+          <div className="d-flex align-item-center justify-content-center">
+              <Button variant="success" className="p-4" onClick={handleShow}>
+                <strong>Créer Votre sondage</strong>
+              </Button>
+
+              <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                  <Modal.Title>Faites vous plaisir et créer un sondage</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  <form className="form-control mt-4" id="survey" autoComplete="off" onSubmit={handleSubmit}>
+                    <div className="d-flex justify-content-between align-items-center flex-wrap">
+                      <input
+                        className="mt-4 mx-4"
+                        type="text"
+                        name="title"
+                        placeholder="Titre Sondage"
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
+                      />
+                      <textarea
+                        className="mx-4 my-4 border-1"
+                        rows={3}
+                        cols={70}
+                        name="description"
+                        placeholder="Description sondage"
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
+                      />
+                    </div>
+
+                    <div className="form-field">
+                      <label>Question(s)</label>
+                      <div className="content my-2">
+                        {questions.map((question, index) => (
+                          <div key={index} className="sondages">
+                            <input
+                              type="text"
+                              value={question.question}
+                              placeholder="Posez votre question..."
+                              onChange={(e) => handleQuestionChange(e, index)}
+                              required
+                              className='my-2'
+                            />
+                            {question.responses.map((response, responseIndex) => (
+                              <div key={responseIndex} className="form-check d-flex align-items-center justify-content-around">
+                                <input
+                                  className="form-check-input"
+                                  type="radio"
+                                  name={`response_${index}`}
+                                  id={`response_${index}_${responseIndex}`}
+                                />
+                                <input
+                                  type="text"
+                                  value={response}
+                                  placeholder="Votre réponse..."
+                                  onChange={(e) => handleResponseChange(e, index, responseIndex)}
+                                  required
+                                />
+                                {responseIndex === question.responses.length - 1 && (
+                                  <button type="button" className="add-btn mx-2" style={{width:250}} onClick={() => handleAddResponse(index)}>Ajouter une réponse</button>
+                                )}
+                                {responseIndex !== 0 && (
+                                  <button type="button" className="remove-btn" onClick={() => handleRemoveResponse(index, responseIndex)}>Supprimer</button>
+                                )}
+                              </div>
+                            ))}
+                            {index === questions.length - 1 && (
+                              <button type="button" className="add-btn" onClick={handleAddQuestion}>Ajouter une question</button>
+                            )}
+                            {index !== 0 && (
+                              <button type="button" className="remove-btn" onClick={() => handleRemoveQuestion(index)}>Supprimer</button>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    <button type="submit" onClick={handleClose} className="submit-btn">Enregistrer</button>
+                  </form>
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button variant="secondary" onClick={handleClose}>
+                    Close
+                  </Button>
+                </Modal.Footer>
+              </Modal>
+            </div>
         </div>
-        
-        {/* graphique */}
-
-        <div className='charts'>
-          
-          <ResponsiveContainer width="100%" height="100%">
-            <BarChart
-              width={500}
-              height={300}
-              data={data}
-              margin={{
-                top: 5,
-                right: 30,
-                left: 20,
-                bottom: 5,
-              }}
-            >
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="name" />
-              <YAxis />
-              <Tooltip />
-              <Legend />
-              <Bar dataKey="pv" fill="#FF9700" activeBar={<Rectangle fill="pink" stroke="blue" />} />
-              <Bar dataKey="uv" fill="#009788" activeBar={<Rectangle fill="gold" stroke="purple" />} />
-            </BarChart>
-          </ResponsiveContainer>
-
-          <ResponsiveContainer width="100%" height="100%">
-            <LineChart
-              width={500}
-              height={300}
-              data={data}
-              margin={{
-                top: 5,
-                right: 30,
-                left: 20,
-                bottom: 5,
-              }}
-            >
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="name" />
-              <YAxis />
-              <Tooltip />
-              <Legend />
-              <Line type="monotone" dataKey="pv" stroke="#FF9700" activeDot={{ r: 8 }} />
-              <Line type="monotone" dataKey="uv" stroke="#009788" />
-            </LineChart>
-          </ResponsiveContainer>
-    
-        </div>
-
-        {/* fin graphique */}
-
       </div>
     </div>
   );

@@ -22,9 +22,7 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
   const [show, setShow] = useState(true);
-  // const [successSms, setSuccessSms] = useState(null);
   const [isLogged, setIsLogged] = useState(false); // Etat pour gérer la redirection
-  // const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -37,7 +35,6 @@ const Login = () => {
 
       // Traitez la réponse en cas de succès
       console.log('Réponse de la requête POST:', response.data);
-      // setSuccessSms('Connexion réussie !');
       // Effacez les éventuels messages d'erreur précédents
       setError(null);
       setShow(true);
@@ -49,8 +46,6 @@ const Login = () => {
       setEmail('');
       setPassword('');
       setIsLogged(true);
-      // setSuccessSms('Connexion réussie !');
-      // navigate("/login")
     } catch (error) {
       if (error.response) {
         // Si la réponse est reçue mais avec un statut d'erreur
@@ -61,7 +56,6 @@ const Login = () => {
       } else if (error.request) {
         // Si la requête est faite mais aucune réponse n'est reçue
         console.error('Pas de réponse de la requête:', error.request);
-        // setSuccessSms(null);
       } else {
         // Autres erreurs
         console.error('Erreur lors de la requête:', error.message);

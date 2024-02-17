@@ -4,10 +4,16 @@ import Sidebar from './Sidebar';
 import Header from './Header';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import { useLocation } from 'react-router-dom';
+import Alert from 'react-bootstrap/Alert';
 
 function ViewSondage() {
   const [sondages, setSondages] = useState([]);
   const [error, setError] = useState('');
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const successMessage = queryParams.get('successMessage');
+  const [show, setShow] = useState(true);
   const token = sessionStorage.getItem('token');
 
   useEffect(() => {
@@ -20,10 +26,10 @@ function ViewSondage() {
         });
         console.log('Réponse de la requête:', response.data);
         setSondages(response.data); // Mettre à jour les sondages avec les données récupérées
-        console.log(sondages)
       } catch (error) {
         console.error('Erreur lors de la récupération des données des sondages:', error.message);
         setError('Erreur lors de la récupération des données des sondages');
+        setShow(false);
       }
     };
 
@@ -66,6 +72,11 @@ function ViewSondage() {
       <div className="col overflow-auto">
         <Header />
         <div className="mx-auto my-4 col-lg-8 col-md-10 col-sm-10 flex-wrap" id="content">
+          {successMessage && show && (
+            <Alert variant="success" onClose={() => setShow(false)} dismissible>
+              <p className="text-center"><strong>{successMessage}</strong></p>
+            </Alert>
+          )}
           <div className="row text-center">
             <h1>Liste des Sondages</h1>
             {sondages?.data?.map((sondage) => {

@@ -6,6 +6,7 @@ import { Link, Navigate } from "react-router-dom";
 import "./login.css";
 import { instance } from "../../api";
 
+
 function Header() {
   
   const [isLogout, setIsLogout] = useState(false); // Etat pour gérer la redirection
@@ -37,24 +38,29 @@ function Header() {
   return (
     <div>
       <Navbar
-        expand=""
+        expand="lg"
         className="header-dash"
         style={{
           backgroundColor: "#fff",
-          color: "#4A5460",
+          color: "",
           padding: "20px",
         }}
       >
-        <Navbar.Brand href="#home">Dashboard</Navbar.Brand>
+        <h1 href="#home" style={{
+          fontSize:'27px',
+          color:'#3F3F46'
+        }}>Dashboard</h1>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
-            <NavDropdown title="Reglage" id="basic-nav-dropdown">
-                <NavDropdown.Item href="/user-profil">Profil</NavDropdown.Item>
-              <NavDropdown.Item href="" onClick={logout}>
-                Déconnexion
-              </NavDropdown.Item>
-            </NavDropdown>
+            {/* <NavDropdown title="" id="basic-nav-dropdown"> */}
+                {/* <NavDropdown.Item href="/user-profil"> */}
+                 <Link to="/user-profil" className="text-decoration-none text-dark"><span>Profil</span></Link> 
+                {/* </NavDropdown.Item> */}
+              {/* <NavDropdown.Item href="" onClick={logout}> */}
+                <Link onClick={logout} className="text-decoration-none text-dark"><span className="px-3">Deconnection</span></Link>
+              {/* </NavDropdown.Item> */}
+            {/* </NavDropdown> */}
           </Nav>
         </Navbar.Collapse>
       </Navbar>
