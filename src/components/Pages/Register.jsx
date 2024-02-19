@@ -26,7 +26,8 @@ const Register = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:8000/api/register', {
+      // const response = await axios.post('http://localhost:8000/api/register', {
+      const response = await instance.post('register', {
         name: name,
         email: email,
         password: password
@@ -118,7 +119,7 @@ const Register = () => {
                   <Form.Control
                     // name="password"
                     type="password"
-                    id='name'
+                    id='password'
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     style={{
